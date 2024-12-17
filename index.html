@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidor de Velocidad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #result {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Medidor de Velocidad</h1>
+    <button onclick="startPingTest()">Iniciar Prueba de Ping</button>
+    <div id="result"></div>
+
+    <script>
+        function startPingTest() {
+            const startTime = Date.now();
+            fetch(window.location.href)
+                .then(() => {
+                    const endTime = Date.now();
+                    const ping = endTime - startTime;
+                    document.getElementById('result').innerText = `Ping: ${ping} ms`;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerText = `Error: ${error}`;
+                });
+        }
+    </script>
+</body>
+</html>
